@@ -32,6 +32,7 @@ var sis = &SI{}
 // http://man7.org/linux/man-pages/man1/uptime.1.html
 // https://github.com/capnm/golang/blob/go1.1.1/src/pkg/syscall/zsyscall_linux_amd64.go#L1050
 // https://github.com/capnm/golang/blob/go1.1.1/src/pkg/syscall/ztypes_linux_amd64.go#L528
+// https://github.com/capnm/golang/blob/go1.1.1/src/pkg/syscall/ztypes_linux_arm.go#L502
 func Get() *SI {
 
 	/*
