@@ -18,7 +18,6 @@ func ExampleGet() {
 	fmt.Println(si.ToString())
 }
 
-
 /*
 amd64
 BenchmarkGet		 1000000	      2429 ns/op
