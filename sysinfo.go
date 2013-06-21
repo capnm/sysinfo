@@ -1,3 +1,4 @@
+// A wrapper around the linux syscall sysinfo(2).
 package sysinfo
 
 import (
