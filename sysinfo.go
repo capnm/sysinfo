@@ -90,7 +90,7 @@ func Get() *SI {
 	return sis
 }
 
-// Make the "fmt" interface happy.
+// Make the "fmt" Stringer interface happy.
 func (si SI) String() string {
 	// XXX: Is the copy of SI done atomic? Not sure.
 	// Without an outer lock this may print a junk.
@@ -105,8 +105,9 @@ func (si SI) String() string {
 	)
 }
 
-/* Convert to string in a thread safe way.
-   Output:
+/*
+Convert to string in a thread safe way.
+ Output:
 	uptime		279h6m21s
 	load		0.12 0.04 0.05
 	procs		143
@@ -119,5 +120,5 @@ func (si SI) String() string {
 func (si *SI) ToString() string {
 	defer si.mu.Unlock()
 	si.mu.Lock()
-	return fmt.Sprint(*si)
+	return si.String()
 }
