@@ -81,6 +81,7 @@ func Get() *SI {
 
 	sis.TotalRam = uint64(si.Totalram) / unit
 	sis.FreeRam = uint64(si.Freeram) / unit
+	sis.SharedRam = uint64(si.Sharedram) / unit
 	sis.BufferRam = uint64(si.Bufferram) / unit
 	sis.TotalSwap = uint64(si.Totalswap) / unit
 	sis.FreeSwap = uint64(si.Freeswap) / unit
@@ -95,11 +96,11 @@ func (si SI) String() string {
 	// XXX: Is the copy of SI done atomic? Not sure.
 	// Without an outer lock this may print a junk.
 	return fmt.Sprintf("uptime\t\t%v\nload\t\t%2.2f %2.2f %2.2f\nprocs\t\t%d\n"+
-		"ram  total\t%d kB\nram  free\t%d kB\nram  buffer\t%d kB\n"+
+		"ram  total\t%d kB\nram  free\t%d kB\nram  shared\t%d kB\nram  buffer\t%d kB\n"+
 		"swap total\t%d kB\nswap free\t%d kB",
 		//"high ram total\t%d kB\nhigh ram free\t%d kB\n"
 		si.Uptime, si.Loads[0], si.Loads[1], si.Loads[2], si.Procs,
-		si.TotalRam, si.FreeRam, si.BufferRam,
+		si.TotalRam, si.FreeRam, si.SharedRam, si.BufferRam,
 		si.TotalSwap, si.FreeSwap,
 		// archaic si.TotalHighRam, si.FreeHighRam
 	)
@@ -113,6 +114,7 @@ Convert to string in a thread safe way.
 	procs		143
 	ram  total	383752 kB
 	ram  free	254980 kB
+	ram  shared 121132 kB
 	ram  buffer	7640 kB
 	swap total	887800 kB
 	swap free	879356 kB
